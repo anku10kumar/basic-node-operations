@@ -47,7 +47,7 @@ fs.readFile('foo.txt', (err, file) => {
 });
 console.log("C");
 
-Answer: A, B , C
+Answer: C, A ,B
 
 6. setTimeout is a JavaScript function which calls a function after a set amount of milliseconds. Given the following code, explain in what sequence the functions will run and why.
 
