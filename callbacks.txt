@@ -1,0 +1,78 @@
+
+Questions
+
+
+1. What is the difference between readdirSync and readdir?
+
+Answer:
+
+readdirSync - Synchronous and blocking method that reads a directory.
+
+readdir - Asynchronous and non-blocking method to read a directory.
+
+2. What is the event loop and how does it handle asynchronous requests?
+
+Answer:
+
+An Event Loop is a type of functionality which basically polls for specific events and invokes event handlers when required. A Callback Function is this event handler in Node.
+
+In Node applications, the Node initiates the request but does not wait around the request to get the response. Instead of that, it attaches a callback function to the request. When the request has been completed or the response has been received by the request, the callback function emits an event to do something with either the results of the requested action or the resource requested.
+
+3. Given the following code, specify whether the program is asynchronous and non-blocking or synchronous and blocking or synchronous and non-blocking.
+
+const fs = require('fs');
+const file = fs.readFileSync('foo.txt');
+console.log(file.toString());
+
+Answer:synchronous and blocking
+
+4. Given the following code, specify whether the program is asynchronous and non-blocking or synchronous and blocking or synchronous and non-blocking.
+
+const fs = require('fs');
+fs.readFile('foo.txt', (err, file) => {
+ if (err) throw err;
+ console.log(file.toString());
+});
+console.log("test");
+
+Answer:asynchronous and non-blocking
+
+5. In what order will the console.log statements execute in the code below?
+
+const fs = require('fs');
+fs.readFile('foo.txt', (err, file) => {
+ if (err) throw err;
+ console.log("A");
+ console.log("B")
+});
+console.log("C");
+
+Answer: A, B , C
+
+6. setTimeout is a JavaScript function which calls a function after a set amount of milliseconds. Given the following code, explain in what sequence the functions will run and why.
+
+function greeting() {
+ setTimeout(() => {
+   console.log("friend");
+ }, 100);
+}
+
+function hello(){
+ console.log("hello");
+}
+
+greeting();
+hello();
+
+Answer: Since its an asynchronous and non-blocking function, the hello function will print first. The greeting function will trigger the timeout feature and let the next function run.
+
+7. Create a function which utilizes a callback. Make sure to add console.log statements to understand when your callback function is called.
+
+Answer:
+
+let asyncTest = () => {
+    console.log('first');
+    setTimeout(() => console.log('second'), 2000);
+    console.log('last');
+}
+asyncTest();
