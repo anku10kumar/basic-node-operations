@@ -15,14 +15,14 @@ function evaluateCmd(userInput) {
 
   switch (command) {
     case "echo":
-      //we will add the functionality of echo next within the object commandLibrary
-      //slice(1) will slice the first letter and save the rest
-      commandLibrary.echo(userInputArray.slice(1).join(" "));
-      break;
+    //we will add the functionality of echo next within the object commandLibrary
+    //slice(1) will slice the first letter and save the rest
+    commandLibrary.echo(userInputArray.slice(1).join(" "));
+    break;
 
     case "cat":
-      commandLibrary.cat(userInputArray.slice(1));
-      break;
+    commandLibrary.cat(userInputArray.slice(1));
+    break;
 
     case "head":
     commandLibrary.head(userInputArray.slice(1));
@@ -30,9 +30,9 @@ function evaluateCmd(userInput) {
 
     case "tail":
     commandLibrary.tail(userInputArray.slice(1));
-
+    break;
     default:
-           process.stdout.write('Typed command is not defined');
+    process.stdout.write('Typed command is not defined');
 
   }
 }
@@ -46,7 +46,7 @@ const commandLibrary = {
     const fileName = fullPath[0];
     fs.readFile(fileName, (err, data) => {
       if (err) throw err;
-console.log(data);
+      console.log(data);
       done(data);
     });
   },
@@ -56,23 +56,23 @@ console.log(data);
     fs.readFile(fileName, (err, data) => {
       if (err) throw err;
       var text = data.toString('utf8');
-     var slicedText = text.split('\n').slice(0,10).join('\n');
-     var bufferText = Buffer.from(slicedText, 'utf8');
-     done(bufferText);
+      var slicedText = text.split('\n').slice(0,10).join('\n');
+      var bufferText = Buffer.from(slicedText, 'utf8');
+      done(bufferText);
     });
   },
 
   "tail": function (fullPath){
-   const fileName = fullPath[0];
-   fs.readFile(fileName, (err, data) => {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
       if (err) throw err;
       var text = data.toString('utf8');
       var slicedText = text.split('\n').slice(-10).join('\n');
       var bufferText = Buffer.from(slicedText, 'utf8');
       done(bufferText);
-     })
+    })
 
-}
+  }
 
 };
 
